@@ -1,0 +1,45 @@
+<script>
+    $(document).ready(function(){
+    var ctx = document.getElementById('TamponiIta').getContext('2d');
+    var vettoreDati = ['20.05','21.05','22.05','23.05','24.05','25.05','26.05','27.05','28.05','29.05','30.05','31.05','01.06','02.06','03.06','04.06','05.06',
+    '06.06','07.06','08.06','09.06','10.06','11.06','12.06','13.06']
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: vettoreDati,
+            datasets: [{
+                label: 'Variazione totale positivi in Italia',
+                data: [-2377,-1792,-1638,-1570,-1158,-1294,-2358,-1976,-2980,-1811,-2484,-1594,-730,-1474,-596,-868,-1453,-1099,-615,-532,-1858,-1162,-1073,-500,-1000],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    });
+</script>
+
+

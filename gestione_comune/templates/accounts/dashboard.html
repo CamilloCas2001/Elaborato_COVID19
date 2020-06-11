@@ -1,0 +1,25 @@
+{% extends 'accounts/base.html' %}
+
+{% block contenuto %}
+{% include 'accounts/statistiche_ita_gen.html' %}
+{% endblock contenuto %}
+
+
+{% block graf_nuovipos_ita %}
+{% include 'accounts/grafici_nuovi_positivi.html'%}
+{% endblock graf_nuovipos_ita %}
+
+
+{% block graf_nuovipos_lomb %}
+{% include 'accounts/nuoviPosLomb.html'%}
+{% endblock graf_nuovipos_lomb %}
+
+{% block graf_tamponi_ita %}
+{% include 'accounts/num_tamponi_ita.html'%}
+{% endblock graf_tamponi_ita %}
+
+{% block graf_tamponi_lomb %}
+{% include 'accounts/num_tamponi_lomb.html'%}
+{% endblock graf_tamponi_lomb %}
+
+

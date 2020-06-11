@@ -1,0 +1,221 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Contact Management</title>
+  <!-- Grafici -->
+  <!--Chart js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- Custom fonts for this template-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link rel="stylesheet" href="{% static 'css/sb-admin-2.min.css' %}" >
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" >
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-address-card"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Tracciamento <sup>COVID-19</sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Contact -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-table"></i>
+          <span>modello: SIRS</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Profile -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Account: {{request.user}}</span></a>
+      </li>
+
+      <!-- Nav Item - Logout -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">
+          <i class="fas fa-fw fa-sign-out-alt"></i>
+          <span>Logout</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"> <br> Dashboard</h1>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Totale positivi</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totale_positivi }} </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Guariti</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ dimessi_guariti }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Deceduti</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ deceduti }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Casi totali</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totale_casi }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Grafici nuovi positivi italia -->
+            <div class="col-xl-6 col-lg-6" style="width:100%">
+                <div class="card shadow mb-4" >
+                  <!-- Contenuto del grafico -->
+                  <div class="card-body">
+                    <div class="chart-area" style="width:85%">
+                      <canvas id="NuoviContagiIta"> {% block graf_nuovipos_ita %} {% endblock graf_nuovipos_ita %}</canvas>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6" style="width:100%">
+                <div class="card shadow mb-4" >
+                  <!-- Contenuto del grafico -->
+                  <div class="card-body">
+                    <div class="chart-area" style="width:85%">
+                      <canvas id="NuoviContagiLomb"> {% block graf_nuovipos_lomb %} {% endblock graf_nuovipos_lomb %}</canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <!-- Grafici numero tamponi Italia -->
+            <div class="col-xl-6 col-lg-6" style="width:100%">
+                <div class="card shadow mb-4" >
+                  <!-- Contenuto del grafico -->
+                  <div class="card-body">
+                    <div class="chart-area" style="width:85%">
+                      <canvas id="TamponiIta"> {% block graf_tamponi_ita %} {% endblock graf_tamponi_ita %}</canvas>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- Grafici numero tamponi Lombardia -->
+            <div class="col-xl-6 col-lg-6" style="width:100%">
+                <div class="card shadow mb-4" >
+                  <!-- Contenuto del grafico -->
+                  <div class="card-body">
+                    <div class="chart-area" style="width:85%">
+                      <canvas id="TamponiLomb"> {% block graf_tamponi_lomb %} {% endblock graf_tamponi_lomb %}</canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+      <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+</body>
+
+</html>

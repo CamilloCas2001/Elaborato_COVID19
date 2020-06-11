@@ -1,0 +1,33 @@
+<script>
+    $(document).ready(function(){
+    var ctx = document.getElementById('TamponiLomb').getContext('2d');
+    var vettoreDati = ['20.05','21.05','22.05','23.05','24.05','25.05','26.05','27.05','28.05','29.05','30.05','31.05','01.06','02.06','03.06','04.06','05.06',
+    '06.06','07.06','08.06','09.06','10.06','11.06','12.06','13.06']
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: vettoreDati,
+            datasets: [{
+                label: 'Variazione totale positivi in Lombardia',
+                data: [-620,44,-782,-303,-16,-399,-738,-440,-1124,-230,-874,-813,-135,-606,-31,0,-371,-354,-79,-101,-1022,-440,-517,-50,0],
+
+                borderColor: [
+                    'rgba(255, 165, 0, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    });
+</script>
+
+
